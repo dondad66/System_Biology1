@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download Genomic and Proteomic Data of Mouse</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Download Genomic and Proteomic Data of Mouse</h1>
+        <div class="flex-container">
+            <!-- Genomic Data Section -->
+            <div class="section genomic-section">
+                <h2>Genomic Data (Ensembl)</h2>
+                <p>Select a file from the list below to download:</p>
+                <div class="file-list-container">
+                    <ul class="file-list">
+                        {% for file in ensembl_files %}
+                            <li><a href="{{ url_for('download', file=file) }}">{{ file }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Proteomic Data Section -->
+            <div class="section proteomic-section">
+                <h2>Proteomic Data (UniProt)</h2>
+                <p>Click the button below to download the Mouse proteome data in FASTA format:</p>
+                <div class="uniprot-container">
+                    <button onclick="window.location.href='{{ url_for('download_uniprot') }}'">Download Mouse Proteome (FASTA)</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
